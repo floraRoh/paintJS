@@ -11,6 +11,7 @@ const canvasContext = canvas.getContext("2d");
 const INITIAL_COLOR = "#000000";
 const INITIAL_SIZE = 600;
 
+canvas.fillStyle = "#ffffff";
 canvas.width = INITIAL_SIZE;
 canvas.height = INITIAL_SIZE;
 canvasContext.strokeStyle = INITIAL_COLOR;
@@ -38,13 +39,13 @@ function onMouseMove(event) {
   }
 }
 
-if (canvas) {
-  canvas.addEventListener("mousemove", onMouseMove);
-  canvas.addEventListener("mousedown", strartPaining);
-  canvas.addEventListener("mouseup", stopPainting);
-  canvas.addEventListener("mouseleave", stopPainting);
-  canvas.addEventListener("click", handleCanvasClick);
-}
+const watermark = "Hwonny";
+const txt_info = canvasContext.measureText(watermark);
+const x = canvas.width - canvas.width / 2;
+const y = canvas.height - canvas.height / 2;
+canvasContext.font = "40px Malgun Gothic";
+canvasContext.fillStyle = "rgba(255, 0, 0, 0.2)";
+canvasContext.fillText(watermark, x, y);
 
 // 브러쉬 관련 변경
 function handleChangeColor(event) {
@@ -53,16 +54,15 @@ function handleChangeColor(event) {
   canvasContext.fillStyle = bgColor;
 }
 function handleRangeBrush(event) {
-  console.log(event.target.value);
   canvasContext.lineWidth = event.target.value;
 }
 
 function handleCanvasFill() {
   if (filling) {
-    fillBtn.innerHTML = "FILL";
+    fillBtn.innerHTML = "PAINT";
     filling = false;
   } else {
-    fillBtn.innerHTML = "PAINT";
+    fillBtn.innerHTML = "FILL";
     filling = true;
   }
 }
@@ -72,7 +72,24 @@ function handleCanvasClick() {
     canvasContext.fillRect(0, 0, INITIAL_SIZE, INITIAL_SIZE);
   }
 }
-
+function handleCanvasDefence(event) {
+  event.preventDefault();
+}
+function handleSaveClick(event) {
+  const image = canvas.toDataURL("image/jpg");
+  const link = document.createElement("a");
+  link.href = image;
+  link.download = "paint.jpg";
+  link.click();
+}
+if (canvas) {
+  canvas.addEventListener("mousemove", onMouseMove);
+  canvas.addEventListener("mousedown", strartPaining);
+  canvas.addEventListener("mouseup", stopPainting);
+  canvas.addEventListener("mouseleave", stopPainting);
+  canvas.addEventListener("click", handleCanvasClick);
+  canvas.addEventListener("contextmenu", handleCanvasDefence);
+}
 if (color) {
   Array.from(color).forEach((color) => {
     color.addEventListener("click", handleChangeColor);
@@ -84,6 +101,10 @@ if (range) {
 
 if (fillBtn) {
   fillBtn.addEventListener("click", handleCanvasFill);
+}
+
+if (saveBtn) {
+  saveBtn.addEventListener("click", handleSaveClick);
 }
 // document
 //   .querySelector("#colorBtn button:first-child")
