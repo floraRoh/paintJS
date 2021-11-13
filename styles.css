@@ -10,25 +10,80 @@ body {
   align-items: center;
   overflow: hidden;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
 
+h1.title{
+  font-weight: bold;
+  font-size:30px;
+  margin-bottom:15px;
+}
 .paint {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
 }
 .controls {
+  width: 100%;
+}
+
+#colorOptions {
+  text-align: center;
+  margin: 30px 0;
+}
+#colorOptions .button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  margin: 30px auto 0;
+}
+#colorOptions .button button {
+  display: inline-block;
+  flex: 1;
+  padding: 5px 0;
+  background: transparent;
+}
+#colorOptions .button button.black {
+  background: black;
+  color: white;
+}
+#colorOptions .button button:not(:last-child) {
+  margin-right: 20px;
+}
+#colorOptions #colorRange {
+  -webkit-appearance: none;
+  background-color: #dddddd;
+  height: 3px;
+}
+#colorOptions #colorRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #ffffff;
+  cursor: pointer;
+  border: 1px solid #787878;
+  height: 18px;
+  width: 18px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3), 0px 0px 1px rgba(0, 0, 0, 0.3);
+}
+#colorOptions #colorRange::-ms-track {
+  background: black;
+  border-color: transparent;
+  color: transparent;
 }
 
 .colors#colors {
-  display: flex;
-  justify-content: space-between;
-  width: 600px;
-  margin-top: 40px;
+  white-space: nowrap;
+  width: 80%;
+  max-width: 600px;
+  overflow-x: scroll;
+  margin:0 auto;
+  padding-bottom:15px;
+  text-align: center;
 }
 li.colors_li {
   width: 40px;
   height: 40px;
   border-radius: 100%;
   cursor: pointer;
+  display: inline-block;
 }

@@ -5,25 +5,22 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" href="./reset.css"/> -->
+  <link rel="stylesheet" href="./reset.css"/>
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <title>Paint JS - 바닐라 JS 그림판 만들기</title>
 </head>
-
 <body>
+  <h1 class="title">Vanilla JS, 그림판</h1>
   <canvas id="paint" class="paint"></canvas>
   <div class="controls">
     <div id="colorOptions">
-      <input type="range"
-        id="colorRange"
-        min="1"
-        max="10"
-        value="5.5" 
-        step="1"
-      />
-      <button id="fillBtn">PAINT</button>
-      <button id="saveBtn">SAVE</button>
+      <input type="range" id="colorRange" min="1" max="10" value="5.5" step="1" />
+      <div class="button">
+        <button id="fillBtn">PAINT</button>
+        <button id="saveBtn">SAVE</button>
+        <button id="resetBtn">RESET</button>
+      </div>
     </div>
     <ul class="colors" id="colors">
       <li class="colors_li" style="background-color: black;"></li>
