@@ -16,7 +16,7 @@ body {
 h1.title{
   font-weight: bold;
   font-size:30px;
-  margin-bottom:15px;
+  margin:30px 0;
 }
 .paint {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -79,6 +79,17 @@ h1.title{
   margin:0 auto;
   padding-bottom:15px;
   text-align: center;
+  
+}
+.colors#colors::webkit-scrollbar {
+  background-color: black;
+  display: none;
+}
+.colors#colors::-webkit-scrollbar-thumb {
+  background-color: #2f3542;
+}
+.colors#colors::-webkit-scrollbar-track {
+  background-color: grey;
 }
 li.colors_li {
   width: 40px;
@@ -86,4 +97,17 @@ li.colors_li {
   border-radius: 100%;
   cursor: pointer;
   display: inline-block;
+}
+
+.scroll-discript{
+  text-align: center;
+  margin-bottom:10px;
+  font-size: 13px;
+  display: none;
+}
+
+@media screen and (max-width:560px) {
+  .scroll-discript {
+    display: block;
+  }
 }
